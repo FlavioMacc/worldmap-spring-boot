@@ -10,14 +10,16 @@ import it.objectmethod.worldmapspringboot.dao.INationDao;
 
 @RestController
 public class ContinentController {
-	
+
 	@Autowired
 	private INationDao iDaoNation;
-	
-	@PostMapping(value = { "/", "continent" })
+
+	@PostMapping("continent")
 	public List<String> snowContinents() {
 		List<String> continents = iDaoNation.getAllContinents();
 
 		return continents;
+
 	}
+
 }

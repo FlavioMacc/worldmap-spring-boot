@@ -12,31 +12,64 @@
 </head>
 <body>
 
+	<h1 align="center">
+		<b style="font-size: 60px; color: red;">NAZIONI DEL CONTINENTE
+			-${continent}-</b>
+	</h1>
 
-	<div align="center">
+	<div align="center" id="list">
+		
+		
+		<script type="text/javascript">
+			//var continent = window.location.continent;
+		
+			var xmlhttp = new XMLHttpRequest();
+			var url = "nationjdbc?continent="+continent;
 
-		<h1>
-			<b style="font-size: 60px; color: red;">NAZIONI DEL CONTINENTE -${continent}-</b>
-		</h1>
-		<table style="width: 100%">
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var info = JSON.parse(this.responseText);
+					//showCountries(countries);
+				}
+			};
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+
+			function showContinent(countries) {
+				var out = "";
+				var i;
+
+				for (i = 0; i < countries.length; i++) {
+					out += '<b style="font-size: 60px; color: blue;"><a href="' + countries[i].code+ '">' + countries[i].name
+							+ '</a></b><br>';
+				}
+				document.getElementById("list").innerHTML = out;
+			}
+			
+			
+		</script>
+		
+		
+
+		<!-- <table style="width: 100%">
 			<c:forEach items="${result}" var="nazione">
 
 				<tr>
 					<td style="width: 50%"><a
 						href="cityJdbc?nation=${nazione.code}"><b
 							style="font-size: 60px; color: blue;">${nazione.name}</b></a></td>
-					<td style="width: 50%">
-					</td>
+					<td style="width: 50%"></td>
 				</tr>
 
 			</c:forEach>
-		</table>
-		<br> <a href="continent"><img alt="back page button"
+		</table>  -->
+		
+	</div>
+	
+	<div>
+	<br> <a href="continent"><img alt="back page button"
 			src="backButton.png" width="100px"></a>
 	</div>
-
-
-
-
+	
 </body>
 </html>
