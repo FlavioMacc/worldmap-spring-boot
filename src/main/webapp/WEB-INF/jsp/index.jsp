@@ -6,9 +6,36 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Continenti</title>
-<link href="stile.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+#Abutton {
+	-webkit-appearance: button;
+	-moz-appearance: button;
+	appearance: button;
+	text-decoration: none;
+	color: initial;
+	width: 100px;
+	text-align: center;
+}
+</style>
 
 <script type="text/javascript">
+	var order = "A-z";
+
+	function setOrder(execute) {
+		order = document.getElementById('orderButton').value;
+
+		if (execute)
+			requestAtServer("cityJdbc", "GET", "order=" + order);
+
+		if (order == "A-z") {
+			order = "Z-a";
+		} else {
+			order = "A-z";
+		}
+
+	}
+
 	function backPage() {
 		var route = document.getElementById('backButton').value;
 
@@ -19,19 +46,18 @@
 
 			break;
 		case "country":
-			
+
 			requestAtServer("nationjdbc", "GET", "");
 
 			break;
 		}
 	}
-	
-	function deleteCity(idCity)
-	{
-		requestAtServer("/deleteCity", "GET", "idCity="+idCity);
+
+	function deleteCity(idCity) {
+		requestAtServer("/deleteCity", "GET", "idCity=" + idCity);
 		requestAtServer("cityJdbc", "GET", "");
 	}
-	
+
 	function requestAtServer(url, method, params) {
 
 		var xmlhttp = new XMLHttpRequest();
@@ -43,9 +69,9 @@
 				switch (url) {
 
 				case "cityJdbc":
-					
+
 					showCities(info);
-					document.getElementById('backButton').value="country";
+					document.getElementById('backButton').value = "country";
 
 					break;
 
@@ -53,17 +79,16 @@
 
 					showCountries(info);
 					document.getElementById('footer').style.display = 'block';
-					document.getElementById('backButton').value="continent";
-					
+					document.getElementById('backButton').value = "continent";
+
 					break;
 
 				case "continent":
 
 					showContinents(info);
 					document.getElementById('footer').style.display = 'none';
-					
+
 					break;
-					
 
 				}
 
@@ -135,14 +160,19 @@
 
 		out += '<h1><b style="font-size: 70px; color: red;">CONTINENTI TERRESTRI</b></h1><br>';
 		out += '<table style="width: 100%">';
-		out += '<tr><td><b style="font-size: 40px; color: green;">NOME CITTA <p id="Abutton"></p></b></td></tr>';
+		out += '<tr><td><b style="font-size: 40px; color: green;">NOME CITTA<input type="button" id="orderButton" value="'
+				+ order
+				+ '" onload="setOrder('
+				+ false
+				+ ')" onclick="setOrder(' + true + ')"></b></td></tr>';
 
 		for (i = 0; i < cities.length; i++) {
 
 			out += '<tr style="width: 50%">';
 			out += '<td><b style="font-size: 60px; color: blue;"><p value="'+cities[i].idCity+'">'
 					+ cities[i].name + '</p></b></td>';
-			out += '<td style="width: 25%"><p id="Abutton" onclick="deleteCity('+cities[i].idCity+')"> DELETE </p></td>';
+			out += '<td style="width: 25%"><p id="Abutton" onclick="deleteCity('
+					+ cities[i].idCity + ')"> DELETE </p></td>';
 			out += '<td style="width: 25%"><p id="Abutton"> MODIFY </p></td>';
 			out += '</tr>';
 		}
@@ -160,8 +190,8 @@
 	<br>
 	<div align="center" id="footer" style="display: none;">
 
-		<button type="button" id="backButton" value=""
-			onclick="backPage()">TORNA INDIETRO</button>
+		<button type="button" id="backButton" value="" onclick="backPage()">TORNA
+			INDIETRO</button>
 	</div>
 
 

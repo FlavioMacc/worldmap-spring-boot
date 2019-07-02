@@ -31,26 +31,22 @@ public class CityController {
 			session.setAttribute("nation", nation);
 		
 		if (order == null || order.equals("Z-a")) {
-			//model.addAttribute("order", "A-z");
 			order = "ASC";
 
 		} else {
-			//model.addAttribute("order", "Z-a");
 			order = "DESC";
 		}
 
 		citys = iCityDao.getAllNationCitys(nation, order);
-		//model.addAttribute("result", citys);
 
 		return citys;
 	}
 
-	/*
 	@GetMapping("/insertCity")
-	public String insertCity(ModelMap model, @PathParam("city") String city, @PathParam("nation") String nation) {
+	public String insertCity(@PathParam("city") String city, @PathParam("nation") String nation) {
 		iCityDao.insertCity(city, nation);
 		return "forward:/cityJdbc";
-	}*/
+	}
 
 	@GetMapping("/deleteCity")
 	public void deleteCity(@PathParam("idCity") String idCity) {
@@ -58,15 +54,15 @@ public class CityController {
 		//return "forward:/cityJdbc";
 	}
 
-	/*
 	@GetMapping("/updateCity")
-	public String updateCity(ModelMap model, @PathParam("city") String city, @PathParam("idCity") String idCity,
+	public void updateCity(@PathParam("city") String city, @PathParam("idCity") String idCity,
 			@PathParam("nation") String nation) {
 		iCityDao.modifyCity(city, nation, Integer.parseInt(idCity));
-		return "forward:/cityJdbc";
+		//return "forward:/cityJdbc";
 	}
 
-	@RequestMapping(value = { "insertCityPage", "updateCityPage" }, method = RequestMethod.GET)
+	/*
+	@GetMapping(value = { "insertCityPage", "updateCityPage" })
 	public String insertModifyPage(ModelMap model, @PathParam("idCity") String idCity,@PathParam("nation") String nation) {
 		String titlePage = null;
 		String formAction = null;
