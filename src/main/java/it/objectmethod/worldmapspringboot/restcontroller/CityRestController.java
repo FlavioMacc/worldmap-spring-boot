@@ -1,4 +1,4 @@
-package it.objectmethod.worldmapspringboot.controller;
+package it.objectmethod.worldmapspringboot.restcontroller;
 
 import java.util.List;
 
@@ -14,15 +14,59 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.objectmethod.worldmapspringboot.dao.ICityDao;
 import it.objectmethod.worldmapspringboot.domain.City;
+import it.objectmethod.worldmapspringboot.repository.CityRepository;
 
 @RestController
-public class CityController {
+public class CityRestController {
 
+	//@Autowired
+	//private ICityDao iCityDao;
 	@Autowired
-	private ICityDao iCityDao;
-
+	private CityRepository cityRepository;
+	
 	@GetMapping("/cityJdbc")
-	public List<City> snowCitys(@PathParam("nation") String nation, @PathParam("order") String order,HttpSession session) {
+	public List<City> showCities(@PathParam("nation") String nation, @PathParam("order") String order,HttpSession session){
+		List<City> cities = null;
+		
+		if (order == null || order.equals("Z-a")) {
+			//order = "ASC";
+			cities = cityRepository.getCitiesByCountryCodeAsc(nation);
+
+		} else {
+			//order = "DESC";
+			cities = cityRepository.getCitiesByCountryCodeDesc(nation);
+		}
+
+		return cities;
+	}
+	
+	@GetMapping("/deleteCity")
+	public void deleteCity(@PathParam("idCity") long idCity) {
+		cityRepository.delete(idCity);
+	}
+	
+	@GetMapping("/insertCity")
+	public void insertCity(@PathParam("city") City city) {
+		cityRepository.save(city);
+	}
+	
+	@GetMapping("/updateCity")
+	public void updateCity(@PathParam("city") City city, @PathParam("idCity") long idCity) {
+		City oldCity = cityRepository.getOne(idCity);
+		oldCity.setName(city.getName());
+		oldCity.setCountryCode(city.getCountryCode());
+		cityRepository.save(oldCity);
+	}
+	
+	
+	
+	
+	
+	
+	
+
+	/*@GetMapping("/cityJdbc")
+	public List<City> showCitys(@PathParam("nation") String nation, @PathParam("order") String order,HttpSession session) {
 		List<City> citys = null;
 		
 		if(nation == null)

@@ -1,4 +1,4 @@
-package it.objectmethod.worldmapspringboot.controller;
+package it.objectmethod.worldmapspringboot.restcontroller;
 
 import java.util.List;
 
@@ -7,31 +7,33 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.objectmethod.worldmapspringboot.dao.INationDao;
 import it.objectmethod.worldmapspringboot.domain.Nation;
+import it.objectmethod.worldmapspringboot.repository.CountryRepository;
 
 @RestController
-public class NationController {
+public class NationRestController {
 
+	//@Autowired
+	//private INationDao iDaoNation;
+	
 	@Autowired
-	private INationDao iDaoNation;
+	private CountryRepository countryRepository;
 
 	@GetMapping("/nationjdbc")
 	public List<Nation> showNations(@PathParam("continent") String continent,HttpSession session) {
-		List<Nation> nations = null;
+		List<Nation> countries = null;
 		
 		if(continent == null)
 			continent=(String)session.getAttribute("continent");
 		else
 			session.setAttribute("continent", continent);
 		
-		nations = iDaoNation.getAllContinentNations(continent);
+		countries=countryRepository.getCountryByContinentAsc(continent);
+		//nations = iDaoNation.getAllContinentNations(continent);
 		
-		return nations;
+		return countries;
 	}
 	
 	
