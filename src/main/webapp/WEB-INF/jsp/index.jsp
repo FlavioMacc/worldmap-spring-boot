@@ -9,20 +9,12 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/continent.js"></script>
+<script type="text/javascript" src="/js/country.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 
-<style type="text/css">
-#Abutton {
-	-webkit-appearance: button;
-	-moz-appearance: button;
-	appearance: button;
-	text-decoration: none;
-	color: initial;
-	width: 100px;
-	text-align: center;
-}
-</style>
+<!--  <script type="text/javascript">
 
-<script type="text/javascript">
+
 	var order = "A-z";
 
 	function setOrder(execute) {
@@ -151,12 +143,9 @@
 			out += '<td style="width: 25%"><p id="Abutton" onclick="deleteCity('
 					+ cities[i].idCity + ')"> DELETE </p></td>';
 			out += '<td style="width: 25%"><p id="Abutton"> MODIFY </p></td>';
-			out += '</tr>';
-		}
-		out += '</table>';
 		document.getElementById("list").innerHTML = out;
 	}
-</script>
+</script> -->
 
 
 </head>
