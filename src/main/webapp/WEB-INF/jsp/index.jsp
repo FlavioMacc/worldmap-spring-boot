@@ -7,6 +7,9 @@
 <meta charset="ISO-8859-1">
 <title>Continenti</title>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/continent.js"></script>
+
 <style type="text/css">
 #Abutton {
 	-webkit-appearance: button;
@@ -99,33 +102,7 @@
 		//xmlhttp.send(params);
 
 	}
-
-	function showContinents(continents) {
-		var out = "";
-		var i;
-		var url = "'nationjdbc'";
-		var method = "'GET'";
-		var params = "";
-
-		out += '<h1><b style="font-size: 70px; color: red;">CONTINENTI TERRESTRI</b></h1>';
-
-		for (i = 0; i < continents.length; i++) {
-
-			params = "'continent=" + continents[i] + "'";
-
-			out += '<b style="font-size: 60px; color: blue;"><p onclick="requestAtServer('
-					+ url
-					+ ','
-					+ method
-					+ ','
-					+ params
-					+ ')">'
-					+ continents[i]
-					+ '</p></b>';
-		}
-		document.getElementById("list").innerHTML = out;
-	}
-
+	
 	function showCountries(countries) {
 		var out = "";
 		var i;
@@ -183,7 +160,8 @@
 
 
 </head>
-<body onload='requestAtServer("continent","POST","")'>
+<body>
+
 
 
 	<div align="center" id="list"></div>

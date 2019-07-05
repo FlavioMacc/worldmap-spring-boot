@@ -7,12 +7,9 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.objectmethod.worldmapspringboot.dao.ICityDao;
 import it.objectmethod.worldmapspringboot.domain.City;
 import it.objectmethod.worldmapspringboot.repository.CityRepository;
 
@@ -41,30 +38,24 @@ public class CityRestController {
 	}
 	
 	@GetMapping("/deleteCity")
-	public void deleteCity(@PathParam("idCity") long idCity) {
+	public void deleteCity(@PathParam("idCity") Long idCity) {
 		cityRepository.delete(idCity);
 	}
 	
 	@GetMapping("/insertCity")
-	public void insertCity(@PathParam("city") City city) {
+	public void insertCity(@RequestBody City city) {
 		cityRepository.save(city);
 	}
 	
 	@GetMapping("/updateCity")
-	public void updateCity(@PathParam("city") City city, @PathParam("idCity") long idCity) {
+	public void updateCity(@RequestBody City city, @PathParam("idCity") Long idCity) {
+		
 		City oldCity = cityRepository.getOne(idCity);
 		oldCity.setName(city.getName());
 		oldCity.setCountryCode(city.getCountryCode());
 		cityRepository.save(oldCity);
 	}
 	
-	
-	
-	
-	
-	
-	
-
 	/*@GetMapping("/cityJdbc")
 	public List<City> showCitys(@PathParam("nation") String nation, @PathParam("order") String order,HttpSession session) {
 		List<City> citys = null;
