@@ -7,7 +7,7 @@ $(document).on('click','a.continent',function(){
 		out += '<h1><b style="font-size: 70px; color: red;">NAZIONI DEL CONTINENTE</b></h1>';
 		
 		$.each(response, function (i,list){
-			out+='<a class="nation" style="font-size: 60px; color: blue;" value="'+list.code+'">'+list.name+'</a><br>';
+			out+='<a class="nation" style="font-size: 60px; color: blue;">'+list.name+'<input type="hidden" value"'+list.code+'" name="code" ></a><br>';
 		});
 		$("#list").html(out);
 		

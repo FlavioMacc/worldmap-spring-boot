@@ -1,5 +1,5 @@
 $(document).on('click','a.nation',function(){
-	var countryCode = $(this).value();
+	var countryCode = $(this).children().val();
 	$.get("cityJdbc",{nation : countryCode} ,function(response) {
 		var out = "";
 		var list="";

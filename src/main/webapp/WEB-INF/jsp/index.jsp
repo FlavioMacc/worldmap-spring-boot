@@ -10,6 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/continent.js"></script>
 <script type="text/javascript" src="/js/country.js"></script>
+<script type="text/javascript" src="/js/city.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 
 <!--  <script type="text/javascript">
