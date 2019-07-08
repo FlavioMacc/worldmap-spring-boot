@@ -1,5 +1,11 @@
 $(document).ready(function() {
 	
+	showContinents();
+
+});
+	
+function showContinents()
+{
 	$.get("continent", function(response) {
 		var out = "";
 		var list="";
@@ -9,8 +15,9 @@ $(document).ready(function() {
 		$.each(response, function (i,list){
 			out+='<a class="continent" style="font-size: 60px; color: blue;">'+list+'</a> <br>';
 		});
-		$("#list").html(out);
 		
+		$("#list").html(out);
+		$("#footer").hide();
 	});
+}
 	
-});

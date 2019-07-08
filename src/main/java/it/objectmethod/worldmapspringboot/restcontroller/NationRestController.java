@@ -15,43 +15,43 @@ import it.objectmethod.worldmapspringboot.repository.CountryRepository;
 @RestController
 public class NationRestController {
 
-	//@Autowired
-	//private INationDao iDaoNation;
-	
+	// @Autowired
+	// private INationDao iDaoNation;
+
 	@Autowired
 	private CountryRepository countryRepository;
 
 	@GetMapping("/nationjdbc")
-	public List<Nation> showNations(@PathParam("continent") String continent,HttpSession session) {
+	public List<Nation> showNations(@PathParam("continent") String continent, HttpSession session) {
 		List<Nation> countries = null;
-		
-		if(continent == null)
-			continent=(String)session.getAttribute("continent");
-		else
+
+		if (continent == null || continent.equals("")) {
+			continent = (String) session.getAttribute("continent");
+		} else {
 			session.setAttribute("continent", continent);
-		
-		countries=countryRepository.getCountryByContinentAsc(continent);
-		//nations = iDaoNation.getAllContinentNations(continent);
-		
+		}
+
+		countries = countryRepository.getCountryByContinentAsc(continent);
+		// nations = iDaoNation.getAllContinentNations(continent);
+
 		return countries;
 	}
-	
-	
-	/*@GetMapping("/viewNationForUpdateCity")
-	public String getAllNations(ModelMap model,@PathParam("countryCode") String countryCode) {
-		
-		List<Nation> nations = null;
-		Nation nation = null;
-		
-		System.out.println(countryCode);
-		
-		nation=iDaoNation.reserchNationForCode(countryCode);
-		nations=iDaoNation.getAllNationLessOneCountry(countryCode);
-		
-		model.addAttribute("nameNation", nation.getName());
-		model.addAttribute("result", nations);
-		
-		return "insertModifyPageCity";
-	}*/
+
+	/*
+	 * @GetMapping("/viewNationForUpdateCity") public String getAllNations(ModelMap
+	 * model,@PathParam("countryCode") String countryCode) {
+	 * 
+	 * List<Nation> nations = null; Nation nation = null;
+	 * 
+	 * System.out.println(countryCode);
+	 * 
+	 * nation=iDaoNation.reserchNationForCode(countryCode);
+	 * nations=iDaoNation.getAllNationLessOneCountry(countryCode);
+	 * 
+	 * model.addAttribute("nameNation", nation.getName());
+	 * model.addAttribute("result", nations);
+	 * 
+	 * return "insertModifyPageCity"; }
+	 */
 
 }

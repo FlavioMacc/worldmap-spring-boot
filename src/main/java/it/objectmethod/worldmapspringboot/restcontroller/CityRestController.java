@@ -25,6 +25,11 @@ public class CityRestController {
 	public List<City> showCities(@PathParam("nation") String nation, @PathParam("order") String order,HttpSession session){
 		List<City> cities = null;
 		
+		if(nation == null || nation.equals(""))
+			nation=(String)session.getAttribute("nation");
+		else
+			session.setAttribute("nation", nation);
+		
 		if (order == null || order.equals("Z-a")) {
 			//order = "ASC";
 			cities = cityRepository.getCitiesByCountryCodeAsc(nation);
