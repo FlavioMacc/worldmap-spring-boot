@@ -2,7 +2,7 @@ $(document).on('click','a.nation',function(){
 
 	var countryCode=$(this).find('input').val();
 	getOrder(countryCode,"");
-	//showCities(countryCode,"Z-a");
+	// showCities(countryCode,"Z-a");
 	
 });
 
@@ -11,7 +11,9 @@ $(document).on('click','a.cityDetele',function(){
 	var idCity=$(this).find('input').val();
 	var countryCode=$("#infoCurrentPages").val();
 
-	$.delete("deleteCity",{idCity : idCity} ,function(response){alert("bueno")});
+	$.delete("city/"+idCity+"/delete",function(response){ 
+		alert("bueno");
+		});
 	getOrder(countryCode,"");
 	
 });
@@ -41,5 +43,20 @@ function showCities(countryCode,order){
 
 }
 
+function getOrder(coutryCode,order){
+	if (order == "" || order == "Z-a") {
+		order = "A-z";
+	} else {
+		order = "Z-a";
+	}
+	
+	showCities(coutryCode,order);
+}
+
+$(document).on('click','#orderButton',function(){
+	var order= $("#orderButton").val();
+	var coutryCode=$("#infoCurrentPage").val();
+	getOrder(coutryCode,order);	
+});
 
 

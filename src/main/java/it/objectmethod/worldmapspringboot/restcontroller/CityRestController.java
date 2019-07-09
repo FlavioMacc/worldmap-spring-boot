@@ -8,7 +8,9 @@ import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.objectmethod.worldmapspringboot.domain.City;
@@ -42,8 +44,8 @@ public class CityRestController {
 		return cities;
 	}
 
-	@DeleteMapping("/deleteCity")
-	public void deleteCity(@PathParam("idCity") Long idCity) {
+	@DeleteMapping("/city/{idCity}/delete")
+	public void deleteCity(@PathVariable("idCity") Long idCity) {
 		System.out.println("-------------"+idCity);
 		cityRepository.delete(idCity);
 	}
