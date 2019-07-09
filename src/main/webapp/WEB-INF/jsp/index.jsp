@@ -17,6 +17,17 @@
 <body>
 
 	<div align="center" id="list"></div>
+	<div align="center" id="formUpdate" style="display: none;">
+			<form method="post">
+				<input type="hidden" value="" id="idCity">
+				Nome Città:<input type="text" name="city" value=""><br><br>
+				Seleziona Nazione:
+				<select id="listForm">
+				</select>
+				<br><br><br>
+				<input type="submit" name="submit" value="INVIA">
+			</form>
+		</div>
 	<br>
 	<div align="center" id="footer" style="display: none;">
 		<button type="button" id="backButton" value="">TORNA INDIETRO</button>

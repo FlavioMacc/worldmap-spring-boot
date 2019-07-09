@@ -12,6 +12,10 @@ $(document).on('click', '#backButton', function() {
 		$("#infoCurrentPage").val("");
 		showCountries(infoBackPage);
 		break;
+	case "city":
+		
+		
+		break;
 	}
 });
 
