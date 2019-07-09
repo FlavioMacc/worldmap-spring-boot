@@ -6,6 +6,16 @@ $(document).on('click','a.nation',function(){
 	
 });
 
+$(document).on('click','a.cityDetele',function(){
+	
+	var idCity=$(this).find('input').val();
+	var countryCode=$("#infoCurrentPages").val();
+
+	$.delete("deleteCity",{idCity : idCity} ,function(response){alert("bueno")});
+	getOrder(countryCode,"");
+	
+});
+
 function showCities(countryCode,order){
 	
 	$("#backButton").val("country");
@@ -21,9 +31,8 @@ function showCities(countryCode,order){
 		$.each(response, function (i,list){
 
 			out += '<tr><td style="width: 50%"><a class="city" style="font-size: 60px; color: blue;">'+list.name+'</a><br>';
-			out += '<td style="width: 25%"><a id="Abutton">DELETE <input type="hidden" value="'+list.ID+'"></a></td>';
-			out += '<td style="width: 25%"><a id="Abutton">MODIFY </a></td></tr>';
-	
+			out += '<td style="width: 25%"><a class="cityDetele" id="Abutton">DELETE <input type="hidden" value="'+list.idCity+'"></a></td>';
+			out += '<td style="width: 25%"><a class="cityUpdate" id="Abutton">MODIFY </a></td></tr>';
 		});
 		out += '</table>';
 		$("#list").html(out);

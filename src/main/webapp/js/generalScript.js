@@ -5,10 +5,12 @@ $(document).on('click','#backButton',function(){
 	switch(route)
 	{
 	case "continent":
+			$("#infoBackPage").val("");
 			showContinents();
 		break;
 		
 	case "country":
+			$("#infoCurrentPage").val("");
 			showCountries(infoBackPage);
 		break;
 	}	
@@ -21,7 +23,7 @@ $(document).on('click','#orderButton',function(){
 });
 
 function getOrder(coutryCode,order){
-	if (order == null || order == "Z-a") {
+	if (order == "" || order == "Z-a") {
 		order = "A-z";
 	} else {
 		order = "Z-a";
@@ -29,3 +31,21 @@ function getOrder(coutryCode,order){
 	
 	showCities(coutryCode,order);
 }
+	
+	jQuery.each( [ "put", "delete" ], function( i, method ) {
+		  jQuery[ method ] = function( url, data, callback, type ) {
+		    if ( jQuery.isFunction( data ) ) {
+		      type = type || callback;
+		      callback = data;
+		      data = undefined;
+		    }
+		 
+		    return jQuery.ajax({
+		      url: url,
+		      type: method,
+		      dataType: type,
+		      data: data,
+		      success: callback
+		    });
+		  };
+		});

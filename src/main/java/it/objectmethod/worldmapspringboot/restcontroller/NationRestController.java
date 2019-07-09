@@ -25,11 +25,11 @@ public class NationRestController {
 	public List<Nation> showNations(@PathParam("continent") String continent, HttpSession session) {
 		List<Nation> countries = null;
 
-		if (continent == null || continent.equals("")) {
+		/*if (continent == null || continent.equals("")) {
 			continent = (String) session.getAttribute("continent");
 		} else {
 			session.setAttribute("continent", continent);
-		}
+		}*/
 
 		countries = countryRepository.getCountryByContinentAsc(continent);
 		// nations = iDaoNation.getAllContinentNations(continent);

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Continenti</title>
+<title>Index</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/generalScript.js"></script>
@@ -13,48 +13,16 @@
 <script type="text/javascript" src="/js/country.js"></script>
 <script type="text/javascript" src="/js/city.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
-
-<!--  <script type="text/javascript">
-
-	var order = "A-z";
-
-	function setOrder(execute) {
-		order = document.getElementById('orderButton').value;
-
-		if (execute)
-			requestAtServer("cityJdbc", "GET", "order=" + order);
-
-		if (order == "A-z") {
-			order = "Z-a";
-		} else {
-			order = "A-z";
-		}
-
-	}
-
-	function deleteCity(idCity) {
-		requestAtServer("/deleteCity", "GET", "idCity=" + idCity);
-		requestAtServer("cityJdbc", "GET", "");
-	}
-
-</script> -->
-
-
 </head>
 <body>
-
-
 
 	<div align="center" id="list"></div>
 	<br>
 	<div align="center" id="footer" style="display: none;">
-
-		<button type="button" id="backButton" value="" >TORNA INDIETRO</button>
-		<input type="hidden" id="infoBackPage" value="">
+		<button type="button" id="backButton" value="">TORNA INDIETRO</button>
+		<input type="hidden" id="infoBackPage" value=""> 
 		<input type="hidden" id="infoCurrentPage" value="">
-		
 	</div>
-
 
 </body>
 </html>
