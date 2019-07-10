@@ -47,10 +47,12 @@ public class CityRestController {
 
 	@PutMapping("/city/update")
 	public void updateCity(@RequestBody City city/*, @RequestParam("idCity") Long idCity*/) {
-
-		//City oldCity = cityRepository.getOne(idCity);
-		//oldCity.setName(city.getName());
-		//oldCity.setCountryCode(city.getCountryCode());
-		//cityRepository.save(oldCity);
+		
+		Long idCity= city.getIdCity();
+		
+		City oldCity = cityRepository.getOne(idCity);
+		oldCity.setName(city.getName());
+		oldCity.setCountryCode(city.getCountryCode());
+		cityRepository.save(oldCity);
 	}
 }
